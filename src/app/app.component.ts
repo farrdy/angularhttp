@@ -60,9 +60,10 @@ export class AppComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.onUpdateUser();
-    this.onGetUsers();
-    this.onPatchUser();
+    // this.onUpdateUser();
+    // this.onGetUsers();
+    // this.onPatchUser();
+    this.onDeleteUser();
     // this.onGetUser();
     // this.onCreateUser();
   }
@@ -105,6 +106,13 @@ export class AppComponent implements OnInit {
     );
   }
 
+  onDeleteUser() {
+    this.userService.deleteUser(10).subscribe(
+      (response) => console.log(response),
+      (error: any) => console.log(error),
+      () => console.log('Done deleting user')
+    );
+  }
   //Experimenting with observables---Add the commented code below to the constructor
   // type HttpResponse = { code: number; data: string };
   // const observable = new Observable<HttpResponse>((subscriber) => {

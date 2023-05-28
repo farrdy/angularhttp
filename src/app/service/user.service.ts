@@ -31,4 +31,8 @@ export class UserService {
   patchUser(user: User): Observable<User> {
     return this.http.patch<User>(`${this.baseApiUrl}/users/${user.id}`, user);
   }
+
+  deleteUser(id: number): Observable<unknown> {
+    return this.http.delete<unknown>(`${this.baseApiUrl}/users/${id}`);
+  }
 }
