@@ -28,8 +28,8 @@ export class UserService {
 
     //using htp params
     let myparams = new HttpParams()
-      .set('passport-Number', 'BN2343434')
-      .set('country-of-issue', 'Zimbabwe');
+      .set('PassportNumber', 'BN2343434')
+      .set('CountryOfIssue', 'Zimbabwe');
 
     return this.http.get<User>(`${this.baseApiUrl}/users/1`, {
       headers: myHttpHeader,
