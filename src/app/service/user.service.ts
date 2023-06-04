@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../interface/user';
@@ -26,8 +26,14 @@ export class UserService {
     myHttpHeader = myHttpHeader.set('ipkey', '4532545'); //overrides the existing key is its exists
     myHttpHeader = myHttpHeader.set('name-surname', 'Motsi F'); //overrides the existing key is its exists
 
+    //using htp params
+    let myparams = new HttpParams()
+      .set('passport-Number', 'BN2343434')
+      .set('country-of-issue', 'Zimbabwe');
+
     return this.http.get<User>(`${this.baseApiUrl}/users/1`, {
       headers: myHttpHeader,
+      params: myparams,
     });
   }
 
