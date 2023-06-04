@@ -15,6 +15,7 @@ export class UserService {
   getUser(): Observable<User> {
     // const myHttpHeader = new HttpHeaders({ name: 'John Doe' });
     let myHttpHeader = new HttpHeaders({ name: 'John Doe' }); //https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept
+    myHttpHeader.append('class', 'first'); //this will not be applied since HttpHeaders is  immutable  but will only  work as per below syntax
     myHttpHeader = myHttpHeader.set('ipkey', 'dfdfdfdf');
     myHttpHeader = myHttpHeader.set('contact-details', [
       'john@gmail.com',
@@ -28,8 +29,12 @@ export class UserService {
 
     //using htp params
     let myparams = new HttpParams()
-      .set('PassportNumber', 'BN2343434')
+      .set('PassportNumber', 'BN23434')
       .set('CountryOfIssue', 'Zimbabwe');
+
+    myparams = myparams
+      .append('name', 'John Doe')
+      .append('email', 'jdoe@gmail.com');
 
     return this.http.get<User>(`${this.baseApiUrl}/users/1`, {
       headers: myHttpHeader,
