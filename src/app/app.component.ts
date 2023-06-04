@@ -63,8 +63,8 @@ export class AppComponent implements OnInit {
     // this.onUpdateUser();
     // this.onGetUsers();
     // this.onPatchUser();
-    this.onDeleteUser();
-    // this.onGetUser();
+    // this.onDeleteUser();
+    this.onGetUser();
     // this.onCreateUser();
   }
 

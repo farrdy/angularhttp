@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../interface/user';
@@ -13,7 +13,22 @@ export class UserService {
   private baseApiUrl = environment.baseApiUrl;
 
   getUser(): Observable<User> {
-    return this.http.get<User>(`${this.baseApiUrl}/users/1`);
+    // const myHttpHeader = new HttpHeaders({ name: 'John Doe' });
+    let myHttpHeader = new HttpHeaders({ name: 'John Doe' }); //https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept
+    myHttpHeader = myHttpHeader.set('ipkey', 'dfdfdfdf');
+    myHttpHeader = myHttpHeader.set('contact-details', [
+      'john@gmail.com',
+      '075846325',
+      'Johanesburg',
+      'South Africa',
+    ]); //Can also pass an array of header values
+    myHttpHeader = myHttpHeader.append('ipkey', 'reredsf'); //adds an additional value to the  same given key
+    myHttpHeader = myHttpHeader.set('ipkey', '4532545'); //overrides the existing key is its exists
+    myHttpHeader = myHttpHeader.set('name-surname', 'Motsi F'); //overrides the existing key is its exists
+
+    return this.http.get<User>(`${this.baseApiUrl}/users/1`, {
+      headers: myHttpHeader,
+    });
   }
 
   getUsers(): Observable<User[]> {
